@@ -72,57 +72,59 @@ function Home() {
           </div>
         </div>
       </nav>
-      <Link className="sm:hidden py-3 px-2 h-fit outline-1 w-full flex justify-between">
-        <MenuIcon onClick={() => setShowMenu(!showMenu)} />{" "}
-        <AccountCircleIcon onClick={() => setShowAc(!showAc)} />
-      </Link>
-      {showMenu ? (
-        <div className="sm:hidden fixed top-[55px] left-2 w-fit outline-1 rounded-md p-1 ">
-          <ul className="flex flex-col gap-2">
-            <li className="cursor-pointer">
-              <Link className="h-fit w-full group">
-                <DashboardIcon /> Dashboard
-              </Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link className="h-fit w-full group">
-                <NoteAddIcon /> Add Project
-              </Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link className="h-fit w-full group">
-                <AddCircleOutlineIcon /> Add Skill
-              </Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link className="h-fit w-full group">
-                <MailOutlineIcon /> Messages
-              </Link>
-            </li>
-          </ul>
-        </div>
-      ) : (
-        ""
-      )}
+      <nav className="sm:hidden h-fit w-full flex justify-between">
+        <Link className="sm:hidden py-3 px-2 h-fit outline-1 w-full flex justify-between">
+          <MenuIcon onClick={() => setShowMenu(!showMenu)} />
+          <AccountCircleIcon onClick={() => setShowAc(!showAc)} />
+        </Link>
+        {showMenu ? (
+          <div className="sm:hidden fixed top-[55px] left-2 w-fit outline-1 rounded-md p-1 ">
+            <ul className="flex flex-col gap-2">
+              <li className="cursor-pointer">
+                <Link className="h-fit w-full group">
+                  <DashboardIcon /> Dashboard
+                </Link>
+              </li>
+              <li className="cursor-pointer">
+                <Link className="h-fit w-full group">
+                  <NoteAddIcon /> Add Project
+                </Link>
+              </li>
+              <li className="cursor-pointer">
+                <Link className="h-fit w-full group">
+                  <AddCircleOutlineIcon /> Add Skill
+                </Link>
+              </li>
+              <li className="cursor-pointer">
+                <Link className="h-fit w-full group">
+                  <MailOutlineIcon /> Messages
+                </Link>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          ""
+        )}
 
-      {showAc ? (
-        <div className="sm:hidden fixed top-[55px] right-2 w-fit outline-1 rounded-md p-1">
-          <ul className="flex flex-col gap-2">
-            <li className="cursor-pointer">
-              <Link className="h-fit w-full group">
-                <AccountCircleIcon /> Accound
-              </Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link className="h-fit w-full group">
-                <LogoutIcon /> Logout
-              </Link>
-            </li>
-          </ul>
-        </div>
-      ) : (
-        ""
-      )}
+        {showAc ? (
+          <div className="sm:hidden fixed top-[55px] right-2 w-fit outline-1 rounded-md p-1">
+            <ul className="flex flex-col gap-2">
+              <li className="cursor-pointer">
+                <Link className="h-fit w-full group">
+                  <AccountCircleIcon /> Accound
+                </Link>
+              </li>
+              <li className="cursor-pointer">
+                <Link className="h-fit w-full group">
+                  <LogoutIcon /> Logout
+                </Link>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          ""
+        )}
+      </nav>
     </div>
   );
 }
