@@ -15,7 +15,9 @@ import { useState } from "react";
 import EditProject from "./pages/projects/EditProject.jsx";
 import AddTechForUpdate from "./pages/projects/AddTechForUpdate.jsx";
 import ManageMessage from "./pages/message/ManageMessage.jsx";
-import Me from "./pages/user/Me.jsx";
+import UpdatePassword from "./pages/user/subComponent/UpdatePassword.jsx";
+import UpdateProfile from "./pages/user/subComponent/UpdateProfile.jsx";
+
 
 function App() {
   const [data, setData] = useState("");
@@ -51,7 +53,9 @@ function App() {
         <Route path="/manage/message" element={<ManageMessage />} />
 
         {/* User */}
-        <Route path="/me" element={<Me />} />
+        <Route path="/update/profile" element={<UpdateProfile/>}/>
+        <Route path="/update/password" element={<UpdatePassword/>}/>
+        
       </Routes>
     </BrowserRouter>
   );

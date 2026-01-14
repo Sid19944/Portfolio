@@ -119,7 +119,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
     return next(new ErrorHandler("Invalid Email ID", 400));
   }
 
-  const isPasswordCorrect = await user.isPasswordCorrect(password);
+  const isPasswordCorrect = user.isPasswordCorrect(password);
 
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Invalid Password", 400));
@@ -170,7 +170,7 @@ const logoutUser = asyncHandler(async (req, res, next) => {
 const getUser = asyncHandler(async (req, res, next) => {
   const user = await User.findOne();
   if (!user) {
-    return next(new ErrorHandler("User did't found, Login Again", 400));
+    return next(new ErrorHandler("User did't found, Login Again", 401));
   }
   return res.status(200).json({
     success: true,
@@ -186,10 +186,10 @@ const updateProfile = asyncHandler(async (req, res, next) => {
     email: req.body.email?.toLowerCase()?.trim(),
     phone: req.body.phone?.trim(),
     aboutMe: req.body.aboutMe?.trim(),
-    portfolioUrl: req.body.portfolioUrl?.trim(),
-    githubUrl: req.body.githubUrl?.trim(),
-    instagramUrl: req.body.instagramUrl?.trim(),
-    linkedInUrl: req.body.linkedInUrl?.trim(),
+    portfolioUrl: req.body?.portfolioUrl?.trim(),
+    githubUrl: req.body?.githubUrl?.trim(),
+    instagramUrl: req.body?.instagramUrl?.trim(),
+    linkedInUrl: req.body?.linkedInUrl?.trim(),
   };
   // if avatar is availabel then updata
   if (req.files && req.files.avatar) {
@@ -232,7 +232,7 @@ const updateProfile = asyncHandler(async (req, res, next) => {
     new: true,
   });
 
-  console.log(user);
+  // console.log(user);
   return res.status(200).json({
     success: true,
     message: "User data updated successfully",
@@ -242,6 +242,7 @@ const updateProfile = asyncHandler(async (req, res, next) => {
 
 const updatePassword = asyncHandler(async (req, res, next) => {
   const { currentPassword, newPassword, confirmNewPassword } = req.body;
+  // console.log(req.body)
   if (!(currentPassword && newPassword && confirmNewPassword)) {
     return next(new ErrorHandler("Please Fill Full Form", 400));
   }
@@ -253,15 +254,16 @@ const updatePassword = asyncHandler(async (req, res, next) => {
     return next(new ErrorHandler("Please Fill Full Form", 400));
   }
 
-  const user = await User.findById(req.user._id).select("+password");
-  const isPasswordCorrect = await user.isPasswordCorrect(currentPassword);
-  if (!isPasswordCorrect) {
-    return next(new ErrorHandler("Wrond password", 400));
-  }
   if (newPassword !== confirmNewPassword) {
     return next(
       new ErrorHandler("new password and confirm password is not same", 400)
     );
+  }
+
+  const user = await User.findById(req.user._id).select("+password");
+  const isPasswordCorrect =  user.isPasswordCorrect(currentPassword);
+  if (!isPasswordCorrect) {
+    return next(new ErrorHandler("Wrond password", 400));
   }
 
   user.password = newPassword;
@@ -337,7 +339,7 @@ const getUserForPortfolio = asyncHandler(async (req, res, next) => {
 });
 
 const SendForgotPasswordLink = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { email } = req.body;
 
   if (!email || email.trim() === "") {
@@ -394,7 +396,7 @@ const setNewForgotPassword = asyncHandler(async (req, res, next) => {
   if (!decodedResetToken) {
     return next(new ErrorHandler("Invalid reset token or expiry token"));
   }
-  console.log("decoded data", decodedResetToken);
+  // console.log("decoded data", decodedResetToken);
 
   const user = await User.findById(decodedResetToken._id);
   if (!user) {

@@ -73,7 +73,7 @@ function AddProject({ techs }) {
           ADD NEW PROJECT
         </h1>
         <div className="mb-2 outline-1 rounded-lg  p-2items-center">
-          {techs.length ? (
+          {techs?.length ? (
             <h1 className="font-semibold  inline-block ">
               Selected Techs : <span className="text-3xl">{techs.length}</span>
             </h1>
@@ -165,7 +165,7 @@ function AddProject({ techs }) {
             image === ""
           }
           onClick={handleSubmit}
-          className="w-full flex justify-center items-center gap-2 outline-1 p-1 rounded-b-2xl bg-blue-400 hover:rounded-2xl hover:bg-blue-600 cursor-pointer hover:font-semibold blur-[0.5px] hover:blur-nonedisabled:cursor-not-allowed"
+          className="w-full flex justify-center items-center gap-2 outline-1 p-1 rounded-b-2xl bg-blue-400 hover:rounded-2xl hover:bg-blue-600 cursor-pointer hover:font-semibold blur-[0.5px] hover:blur-none disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           Add New Project
           <SendIcon className="px-1" />

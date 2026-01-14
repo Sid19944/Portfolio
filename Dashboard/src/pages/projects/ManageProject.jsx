@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { projectApi } from "../../Api";
 import { useNavigate } from "react-router-dom";
 import Loading from "../utils/Loading";
+import BackToDashboard from "../utils/BackToDashboard";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -49,7 +50,7 @@ function ManageProject() {
   }, []);
 
   return (
-    <div className="h-screen w-screen p-2 font-serif">
+    <div className="min-h-screen w-screen p-2 font-serif ">
       <div className="w-full flex justify-between p-6 items-center outline-1 rounded-b-lg mb-4 bg-blue-400">
         <h1 className="lg:w-[80%] lg:px-8 text-2xl font-bold font-serif">
           Projects
@@ -62,6 +63,7 @@ function ManageProject() {
           <AddCircleOutlineOutlinedIcon />
         </Link>
       </div>
+      <BackToDashboard />
       <div className="w-full flex justify-around mb-4  outline-1 rounded-lg p-2 text-center bg-gray-200">
         <div className="outline-1 rounded-lg m-1 md:w-[25%] w-[33%] lg:w-[40%] font-semibold text-xl bg-gray-600 text-amber-50 p-1">
           Title
@@ -119,6 +121,7 @@ function ManageProject() {
           </div>
         </div>
       ))}
+
       <ToastContainer />
       {loading ? <Loading text="Deleting..." /> : <></>}
     </div>

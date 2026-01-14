@@ -6,13 +6,14 @@ import { User } from "../model/user.schema.js";
 
 export const verifyJWT = asyncHandler(async (req, res, next) => {
   try {
-    console.log(req.cookies);
+    // console.log(req.cookies);
     const accessToken =
       req?.cookies?.accessToken ||
       req?.header("Authorization")?.replace("Bearer", "");
 
     if (!accessToken) {
       return next(
+        
         new ErrorHandler("Unauthorized Request", httpStatus.UNAUTHORIZED)
       );
     }

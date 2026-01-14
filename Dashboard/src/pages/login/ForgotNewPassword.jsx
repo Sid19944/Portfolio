@@ -16,6 +16,8 @@ function ForgotNewPassword() {
     setResetData({ ...resetData, [e.target.name]: e.target.value });
   };
 
+  if(resetData){}
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

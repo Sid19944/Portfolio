@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Button from "@mui/material/Button";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { messageApi } from "../../Api";
@@ -49,7 +50,8 @@ function ManageMessage() {
   }, [loading]);
 
   return (
-    <div className="h-screen p-4 font-serif ">
+    <div className="h-screen p-4 font-serif">
+      
       <h1 className="outline-1 p-4 rounded-lg text-2xl font-bold font-serif">
         All Messages
       </h1>
@@ -108,6 +110,7 @@ function ManageMessage() {
           </div>
         ))}
       </div>
+      <div className="h-[100px]"></div>
       <ToastContainer />
     </div>
   );
