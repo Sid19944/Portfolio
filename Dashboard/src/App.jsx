@@ -23,7 +23,7 @@ function App() {
   const [data, setData] = useState("");
 
   return (
-    <BrowserRouter>
+    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -61,7 +61,7 @@ function App() {
 
         <Route path="*" element={<Home />} />
       </Routes>
-    </BrowserRouter>
+    
   );
 }
 
