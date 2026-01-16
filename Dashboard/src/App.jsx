@@ -23,6 +23,13 @@ import EditTimeLine from "./pages/timeLine/EditTimeLine.jsx";
 function App() {
   const [data, setData] = useState("");
   const navigate = useNavigate();
+
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  };
+  
   useEffect(() => {
     const accessToken = getCookie("accessToken");
     if (!accessToken) {
