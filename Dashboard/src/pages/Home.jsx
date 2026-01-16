@@ -27,6 +27,20 @@ function Home() {
   const [activePage, setActivePage] = useState("dashboard");
   const [user, setUser] = useState({});
 
+  
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    };
+    
+    useEffect(() => {
+      const accessToken = getCookie("accessToken");
+      if (!accessToken) {
+        navigate("/login");
+      }
+    }, []);
+
   const logout = () => {
     userApi
       .post("/logout")
