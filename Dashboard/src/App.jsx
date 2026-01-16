@@ -12,7 +12,6 @@ import AddTech from "./pages/projects/AddTech.jsx";
 import Single from "./pages/projects/Single.jsx";
 import { useState } from "react";
 
-
 import EditProject from "./pages/projects/EditProject.jsx";
 import AddTechForUpdate from "./pages/projects/AddTechForUpdate.jsx";
 import ManageMessage from "./pages/message/ManageMessage.jsx";
@@ -24,7 +23,7 @@ function App() {
   const [data, setData] = useState("");
 
   return (
-    // <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -62,7 +61,7 @@ function App() {
 
         <Route path="*" element={<Home />} />
       </Routes>
-    // </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
