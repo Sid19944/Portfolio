@@ -45,7 +45,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("https://porfolio-backend-xxof.onrender.com/auth/v1", {
+      .get("https://porfolio-dashboard.onrender.com/auth/v1", {
         withCredentials: true,
       })
       .then((res) => {

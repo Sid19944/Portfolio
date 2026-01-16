@@ -136,11 +136,13 @@ const loginUser = asyncHandler(async (req, res, next) => {
       httpOnly: true,
       secure: true,
       expires: new Date(Date.now() + 12 * 60 * 60 * 1000),
+      sameSite: "none",
     })
     .cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: true,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      sameSite: "none",
     })
     .json({
       user,
@@ -309,7 +311,8 @@ const refreshAccessToken = asyncHandler(async (req, res, next) => {
       .cookie("accessToken", newAccessToken, {
         httpOnly: true,
         secure: true,
-        expires: new Date(Date.now() + 12*60 * 60 * 1000),
+        expires: new Date(Date.now() + 12 * 60 * 60 * 1000),
+        sameSite: "none",
       })
       .json({
         success: true,

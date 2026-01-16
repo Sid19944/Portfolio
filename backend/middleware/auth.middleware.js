@@ -42,7 +42,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
 
 export const verifyJWTForFrontend = asyncHandler(async (req, res, next) => {
   try {
-    // console.log(req.cookies);
+    console.log(req.cookies);
     const accessToken =
       req?.cookies?.accessToken ||
       req?.header("Authorization")?.replace("Bearer", "");
