@@ -24,7 +24,7 @@ function App() {
   const [data, setData] = useState("");
 
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -60,7 +60,7 @@ function App() {
         {/* timeLine */}
         <Route path="/edit/timeline/:id" element={<EditTimeLine />} />
       </Routes>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
 
