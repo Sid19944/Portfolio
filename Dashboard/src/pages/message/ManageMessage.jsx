@@ -50,7 +50,7 @@ function ManageMessage() {
   }, [loading]);
 
   return (
-    <div className="h-screen p-4 font-serif overflow-y-auto">
+    <div className="h-[90vh] p-4 font-serif overflow-y-auto">
       <h1 className="outline-1 p-4 rounded-lg text-2xl font-bold font-serif sticky top-0 bg-black z-2">
         All Messages
       </h1>
@@ -109,7 +109,7 @@ function ManageMessage() {
           </div>
         ))}
       </div>
-      <div className="h-[100px]"></div>
+      {/* <div className="h-[100px]"></div> */}
       <ToastContainer />
     </div>
   );

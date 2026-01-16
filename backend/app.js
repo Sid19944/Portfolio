@@ -38,5 +38,9 @@ app.use("/auth/v1/skills", skillRouter);
 import projectRouter from "./routes/project.route.js";
 app.use("/auth/v1/project", projectRouter);
 
+// TimeLine router
+import timeLineRouter from "./routes/timeLine.route.js"
+app.use("/auth/v1/timeline", timeLineRouter)
+
 app.use(erroMiddleware);
 export { app };

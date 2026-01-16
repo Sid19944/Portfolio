@@ -67,7 +67,7 @@ function AddProject({ techs }) {
       });
   };
   return (
-    <div className="h-screen p-4 font-serif overflow-y-auto">
+    <div className="h-[85vh] p-4 font-serif overflow-y-auto">
       <div className="flex justify-center items-center">
         <form className="w-[95%] md:w-[75%] lg:w-1/2 p-4 ">
           <h1 className="outline-1 p-2 rounded-b-lg text-center font-bold mb-4 bg-gray-400 sticky top-0">
@@ -167,12 +167,12 @@ function AddProject({ techs }) {
               image === ""
             }
             onClick={handleSubmit}
-            className="w-full flex justify-center items-center gap-2 outline-1 p-1 rounded-b-2xl bg-blue-400 hover:rounded-2xl hover:bg-blue-600 cursor-pointer hover:font-semibold blur-[0.5px] hover:blur-none disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full flex justify-center items-center gap-2 outline-1 p-1 rounded-b-2xl bg-blue-400 hover:rounded-2xl hover:bg-blue-600 cursor-pointer hover:font-semibold blur-[0.5px] hover:blur-none disabled:bg-gray-400 disabled:cursor-not-allowed sticky bottom-0"
           >
             Add New Project
             <SendIcon className="px-1" />
           </button>
-          <div className="pb-12"></div>
+          {/* <div className="pb-12"></div> */}
         </form>
         
         <ToastContainer />

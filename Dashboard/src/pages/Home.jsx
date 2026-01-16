@@ -15,7 +15,11 @@ import AddProject from "../pages/projects/AddProject";
 import AddSkill from "../pages/skill/AddNewSkill";
 import ManageMessage from "./message/ManageMessage";
 import Account from "./user/Account";
+import Dashboard from "./dashboard/dashboard";
+import AddTimeLine from "./timeLine/AddTimeLine";
 import { userApi } from "../Api";
+
+import MoreTimeIcon from "@mui/icons-material/MoreTime";
 
 function Home() {
   const navigate = useNavigate();
@@ -57,7 +61,6 @@ function Home() {
             </span>
           </Link>
         </div>
-
         <div className="group">
           <Link
             className="h-fit w-full group"
@@ -95,6 +98,23 @@ function Home() {
         <div className="group">
           <Link
             className="h-fit w-full group"
+            onClick={() => setActivePage("addTimeLine")}
+          >
+            <MoreTimeIcon
+              className={`hover:scale-120 hover:blur-none blur-[0.5px] cursor-pointer ${
+                activePage == "addTimeLine"
+                  ? "text-blue-400 scale-120 blur-none"
+                  : ""
+              }`}
+            />
+            <span className="absolute left-10 rounded-lg mb-2 hidden group-hover:inline-block bg-amber-100 text-black px-2 group-active:inline-block">
+              Add TimeLine
+            </span>
+          </Link>
+        </div>
+        <div className="group">
+          <Link
+            className="h-fit w-full group"
             onClick={() => setActivePage("messages")}
           >
             <MailOutlineIcon
@@ -126,7 +146,6 @@ function Home() {
             </span>
           </Link>
         </div>
-
         {/* <div className="h-full flex items-center justify-center"> */}
         <div className="group">
           <Link className="h-fit w-full group" onClick={logout}>
@@ -193,6 +212,17 @@ function Home() {
                     className="h-fit w-full group"
                     onClick={() => {
                       setShowMenu(!showMenu);
+                      setActivePage("addTimeLine");
+                    }}
+                  >
+                    <MoreTimeIcon /> Add TimeLine
+                  </Link>
+                </li>
+                <li className="cursor-pointer">
+                  <Link
+                    className="h-fit w-full group"
+                    onClick={() => {
+                      setShowMenu(!showMenu);
                       setActivePage("messages");
                     }}
                   >
@@ -223,11 +253,13 @@ function Home() {
         </nav>
 
         <header className="hidden sm:flex w-full p-3 border-b-1 h-fit sm:items-center gap-4">
-          <img
-            src="/public/hero.png"
-            alt="Profile"
-            className="w-[7%] rounded-lg"
-          />
+          <Link onClick={() => setActivePage("account")} className="w-[10%]">
+            <img
+              src="/public/hero.png"
+              alt="Profile"
+              className="w-full rounded-lg"
+            />
+          </Link>
           <span className="text-xl">
             Welcome back, <span className="font-bold">Siddharth Sarkar</span>
           </span>
@@ -237,36 +269,22 @@ function Home() {
           {(() => {
             switch (activePage) {
               case "dashboard":
-                // return <Dashboard />;
+                return <Dashboard />;
                 break;
               case "addProject":
-                return (
-                  <div className="">
-                    <AddProject />
-                  </div>
-                );
+                return <AddProject />;
                 break;
               case "addSkill":
-                return (
-                  <div className="">
-                    <AddSkill />
-                  </div>
-                );
+                return <AddSkill />;
                 break;
               case "messages":
-                return (
-                  <div className="">
-                    <ManageMessage />
-                  </div>
-                );
+                return <ManageMessage />;
                 break;
               case "account":
-                return (
-                  <div className="">
-                    <Account />
-                  </div>
-                );
+                return <Account />;
                 break;
+              case "addTimeLine" :
+                return <AddTimeLine/>
             }
           })()}
         </div>

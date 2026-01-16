@@ -16,13 +16,13 @@ function ManageProject() {
   // const navigate = useNavigate();
   const [allProject, setAllProject] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [buffering, setBuffering] = useState(false);
 
   const handleDelete = async (id) => {
     setLoading(true);
     await projectApi
       .delete(`/delete/${id}`, { withCredentials: true })
       .then((res) => {
-        // console.log(res.data);
         toast.success(res.data.message, { position: "bottom-left" });
         setTimeout(() => {
           window.location.reload();
@@ -37,20 +37,22 @@ function ManageProject() {
   };
 
   useEffect(() => {
+    setBuffering(true);
     projectApi
       .get("/all")
       .then((res) => {
-        // console.log(res);
         setAllProject(res.data.projects);
+        setBuffering(false);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
         console.log(err.response.data);
+        setBuffering(false);
       });
   }, []);
 
   return (
-    <div className="min-h-screen w-screen p-2 font-serif ">
+    <div className="min-h-screen p-2 font-serif ">
       <div className="w-full flex justify-between p-6 items-center outline-1 rounded-b-lg mb-4 bg-blue-400">
         <h1 className="lg:w-[80%] lg:px-8 text-2xl font-bold font-serif">
           Projects
@@ -65,6 +67,9 @@ function ManageProject() {
       </div>
       <BackToDashboard />
       <div className="w-full flex justify-around mb-4  outline-1 rounded-lg p-2 text-center bg-gray-200">
+        <div className="outline-1 rounded-lg m-1 md:w-[25%] w-[33%] lg:w-[15%] font-semibold text-xl bg-gray-600 text-amber-50 p-1 hidden sm:flex">
+          Banner
+        </div>
         <div className="outline-1 rounded-lg m-1 md:w-[25%] w-[33%] lg:w-[40%] font-semibold text-xl bg-gray-600 text-amber-50 p-1">
           Title
         </div>
@@ -79,12 +84,19 @@ function ManageProject() {
         </div>
       </div>
 
-      {allProject.map((project) => (
+      {allProject?.map((project) => (
         <div
           key={project._id}
-          className="w-full flex justify-between mb-4 flex-wrap outline-1 rounded-lg p-2 text-center shadow-md shadow-blue-600 hover:ease-in duration-300 hover:scale-102"
+          className="w-full flex justify-between mb-4 flex-wrap outline-1 rounded-lg p-2 text-center shadow-md shadow-blue-600"
         >
-          <div className="w-full md:w-[70%] flex justify-around ">
+          <div className="w-full md:w-[70%] flex justify-around items-center">
+            <div className="w-[10%] hidden md:inline-block">
+              <img
+                src={project?.image.url}
+                alt="Banner"
+                className="h-full outline-1 rounded-lg"
+              />
+            </div>
             <div className="w-full md:w-[33%] lg:w-[40%] font-semibold p-2">
               {project.title}
             </div>
@@ -95,7 +107,7 @@ function ManageProject() {
               {project.deployed ? "YES" : "NO"}
             </div>
           </div>
-          <div className="w-full md:w-[30%] flex justify-around outline-1 rounded-lg items-center bg-gray-100">
+          <div className="w-full md:w-[25%] flex justify-around outline-1 rounded-lg items-center bg-gray-100">
             <Link
               to={`/update/project/${project._id}`}
               className="w-[10%] px-4 rounded-lg flex justify-center text-amber-400 hover:text-shadow-sm text-shadow-black"
@@ -124,6 +136,7 @@ function ManageProject() {
 
       <ToastContainer />
       {loading ? <Loading text="Deleting..." /> : <></>}
+      {buffering ? <Loading text="Loading..." /> : <></>}
     </div>
   );
 }

@@ -18,9 +18,9 @@ const router = Router();
 router.route("/register").post(registerUser); //
 router.route("/login").post(loginUser); //
 router.route("/logout").post(verifyJWT, logoutUser);
-router.route("/me").get(getUser);
-router.route("/update/me").put(verifyJWT, updateProfile);
-router.route("/update/password").put(verifyJWT, updatePassword);
+router.route("/me").get(getUser); //
+router.route("/update/me").put(verifyJWT, updateProfile); //
+router.route("/update/password").put(verifyJWT, updatePassword); //
 router.route("/refreshAccessToken").post(refreshAccessToken);
 
 router.route("/me/portfolio").get(getUserForPortfolio);

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import BackToDashboard from "../utils/BackToDashboard";
 
 import Loading from "../utils/Loading"
 
@@ -17,6 +18,7 @@ import Stack from "@mui/material/Stack";
 function ManageSkill() {
   const [allSkill, setAllSkill] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [buffering, setBuffering] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,7 +28,8 @@ function ManageSkill() {
       .catch((err) =>
         toast.error(err.response.data.message, { position: "top-right" })
       );
-  }, [allSkill]);
+      setBuffering(false)
+  }, [loading]);
 
   const handleDelete = async (id) => {
     setLoading(true);
@@ -61,6 +64,7 @@ function ManageSkill() {
             <AddLinkIcon />
           </Link>
         </div>
+        <BackToDashboard/>
         {allSkill.map((skill) => (
           <div
             className="outline-1 w-full rounded-lg mb-4 p-1 h-fit min-h-[10%] flex justify-around items-center flex-wrap"
@@ -95,6 +99,7 @@ function ManageSkill() {
         ))}
         <ToastContainer />
         {loading ? <Loading text="Deleting..." /> : ""}
+        {buffering ? <Loading text="Loading..." /> : <></>}
       </div>
     </div>
   );

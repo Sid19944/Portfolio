@@ -20,4 +20,9 @@ const projectApi = axios.create({
   withCredentials: true,
 });
 
-export { userApi, skillApi, messageApi, projectApi };
+const timeLineApi = axios.create({
+  baseURL: "http://localhost:3000/auth/v1/timeline",
+  withCredentials: true,
+});
+
+export { userApi, skillApi, messageApi, projectApi, timeLineApi };

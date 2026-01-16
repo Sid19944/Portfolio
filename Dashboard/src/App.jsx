@@ -17,6 +17,7 @@ import AddTechForUpdate from "./pages/projects/AddTechForUpdate.jsx";
 import ManageMessage from "./pages/message/ManageMessage.jsx";
 import UpdatePassword from "./pages/user/subComponent/UpdatePassword.jsx";
 import UpdateProfile from "./pages/user/subComponent/UpdateProfile.jsx";
+import EditTimeLine from "./pages/timeLine/EditTimeLine.jsx";
 
 
 function App() {
@@ -55,6 +56,9 @@ function App() {
         {/* User */}
         <Route path="/update/profile" element={<UpdateProfile/>}/>
         <Route path="/update/password" element={<UpdatePassword/>}/>
+
+        {/* timeLine */}
+        <Route path="/edit/timeline/:id" element={<EditTimeLine/>}/>
         
       </Routes>
     </BrowserRouter>

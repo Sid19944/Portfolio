@@ -30,11 +30,11 @@ function AddNewSkill() {
         setTimeout(() => {
           navigate("/manage/skills");
         }, 5000);
-        setLoading(true);
+        setLoading(false);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
-        setLoading(true);
+        setLoading(false);
       });
   };
 

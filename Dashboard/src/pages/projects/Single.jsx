@@ -30,12 +30,12 @@ function Single() {
       .catch((err) => toast.error(err.response.data.message));
   }, []);
 
-  console.log(project);
+  // console.log(project);
   return (
     <div className="h-screen font-serif flex justify-center">
       {/* <div className=" flex flex-wrap md:justify-evenly "> */}
       <div className="w-full md:w-[50%] p-2">
-        <p className=" rounded-lg p-3 mb-3 w-full h-fit font-semibold text-2xl border-b-1">
+        <p className=" rounded-lg p-3 mb-3 w-full h-fit font-semibold text-2xl border-b-2 border-l-2">
           {project.title}
         </p>
 
@@ -43,7 +43,7 @@ function Single() {
           <img
             src={project?.image?.url}
             alt="Project Image"
-            className="rounded-lg h-full outline-4 "
+            className="rounded-lg h-full outline-1"
           />
         </div>
 
@@ -102,13 +102,13 @@ function Single() {
         <div className="flex flex-col justify-between w-full h-fit mb-3">
           <p className="font-bold mb-3 underline">Used Technologies</p>
           <ul>
-            {project?.technologies?.map((tech) => (
-              <li className="list-disc">{tech.skillName}</li>
+            {project?.technologies?.map((tech,idx) => (
+              <li key={idx} className="list-disc">{tech.skillName}</li>
             ))}
           </ul>
         </div> 
 
-        <div className="h-[50px]"></div>
+        <div className="h-25"></div>
       </div>
       <ToastContainer />
     </div>

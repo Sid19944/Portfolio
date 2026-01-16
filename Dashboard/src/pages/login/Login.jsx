@@ -104,15 +104,7 @@ function Login() {
             }
             className="w-full block text-center bg-blue-400 font-semibold py-2 text-black hover:rounded-lg hover:bg-blue-600 hover:text-white cursor-pointerdisabled:cursor-not-allowed"
           >
-            {/* {loading ? (
-              // <div className="flex justify-center items-center gap-2.5">
-              //   <div className="w-5 h-5 border-3 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
-              //   Logging...
-              // </div>
-              <Loading text="Logging..."/>
-            ) : ( */}
             Login
-            {/* )}{" "} */}
             {loading ? "" : <LoginIcon />}
           </button>
         </form>

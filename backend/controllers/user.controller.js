@@ -334,7 +334,7 @@ const getUserForPortfolio = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     success: true,
     message: "User found Successfully",
-    user,
+    user : user,
   });
 });
 
