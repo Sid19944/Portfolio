@@ -135,7 +135,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
     .cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: true,
-      expires: new Date(Date.now() + 30 * 60 * 1000),
+      expires: new Date(Date.now() + 12 * 60 * 60 * 1000),
     })
     .cookie("refreshToken", refreshToken, {
       httpOnly: true,
@@ -175,7 +175,7 @@ const getUser = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     success: true,
     message: "User found seccessfully",
-    user : user,
+    user: user,
   });
 });
 
@@ -261,7 +261,7 @@ const updatePassword = asyncHandler(async (req, res, next) => {
   }
 
   const user = await User.findById(req.user._id).select("+password");
-  const isPasswordCorrect =  user.isPasswordCorrect(currentPassword);
+  const isPasswordCorrect = user.isPasswordCorrect(currentPassword);
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Wrond password", 400));
   }
@@ -309,7 +309,7 @@ const refreshAccessToken = asyncHandler(async (req, res, next) => {
       .cookie("accessToken", newAccessToken, {
         httpOnly: true,
         secure: true,
-        expires: new Date(Date.now() + 30 * 60 * 1000),
+        expires: new Date(Date.now() + 12*60 * 60 * 1000),
       })
       .json({
         success: true,
@@ -334,7 +334,7 @@ const getUserForPortfolio = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     success: true,
     message: "User found Successfully",
-    user : user,
+    user: user,
   });
 });
 
