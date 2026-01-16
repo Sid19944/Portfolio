@@ -14,7 +14,7 @@ const transporter = nodemialer.createTransport({
 const sendMail = async (options) => {
   try {
     const info = await transporter.sendMail({
-      from: `"PORTFOLIO" <allen16@ethereal.email>`,
+      from: `"PORTFOLIO" <realme19948@gmail.com>`,
       to: options.sender,
       subject: options.subject,
       html: options.message,
