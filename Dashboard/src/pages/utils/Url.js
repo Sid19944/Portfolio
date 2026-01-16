@@ -1,1 +1,0 @@
-export const BackendUrl = "https://porfolio-backend-xxof.onrender.com"

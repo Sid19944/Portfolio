@@ -17,7 +17,7 @@ import ManageMessage from "./message/ManageMessage";
 import Account from "./user/Account";
 import Dashboard from "./dashboard/dashboard";
 import AddTimeLine from "./timeLine/AddTimeLine";
-import { userApi } from "../Api";
+import { userApi, authApiFrontend } from "../Api";
 
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
 import axios from "axios";

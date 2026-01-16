@@ -119,7 +119,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
     return next(new ErrorHandler("Invalid Email ID", 400));
   }
 
-  const isPasswordCorrect = user.isPasswordCorrect(password);
+  const isPasswordCorrect = await user.isPasswordCorrect(password);
 
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Invalid Password", 400));
@@ -271,7 +271,7 @@ const updatePassword = asyncHandler(async (req, res, next) => {
   }
 
   const user = await User.findById(req.user._id).select("+password");
-  const isPasswordCorrect = user.isPasswordCorrect(currentPassword);
+  const isPasswordCorrect = await user.isPasswordCorrect(currentPassword);
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Wrond password", 400));
   }
