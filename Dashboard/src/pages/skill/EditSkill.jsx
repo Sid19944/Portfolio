@@ -87,7 +87,7 @@ function EditSkill() {
               <input
                 type="text"
                 name="skillName"
-                value={skillName}
+                defaultValue={skillName}
                 onChange={(e) => setSkillName(e.target.value)}
                 className="border-b-1  focus:border-b-indigo-500 focus:border-b-3 focus:outline-hidden   w-full text-center mb-4 text-2xl font-bold p-4"
               />

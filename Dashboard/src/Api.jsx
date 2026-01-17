@@ -27,15 +27,12 @@ const timeLineApi = axios.create({
   withCredentials: true,
 });
 
-const authApiFrontend = axios.create({
-  baseURL: `${url}/auth}`,
-  withCredentials: true,
-});
+
 export {
   userApi,
   skillApi,
   messageApi,
   projectApi,
   timeLineApi,
-  authApiFrontend,
+  
 };

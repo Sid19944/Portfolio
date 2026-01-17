@@ -119,7 +119,7 @@ function ManageTimeLine() {
         </div>
       </div>
 
-      {loading ? <Loading text="deleting..." /> : ""}
+      {loading ? <Loading text="Updating..." /> : ""}
       <ToastContainer />
     </div>
   );

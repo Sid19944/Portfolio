@@ -47,10 +47,6 @@ function ManageSkill() {
       });
   };
 
-  const handleEdit = (id) => {
-    navigate(`/edit/skill/${id}`);
-  };
-
   return (
     <div className="h-screen font-serif flex justify-center">
       <div className="w-full md:w-[70%] p-2">
@@ -83,9 +79,8 @@ function ManageSkill() {
 
             <div className="flex gap-2.5 items-center">
               <Link
-                onClick={() => handleEdit(skill._id)}
+                to={`/edit/skill/${skill._id}`}
                 variant="contained"
-                endIcon={<EditIcon />}
                 className="outline-1 w-fit  text-center bg-blue-400 font-semibold px-4 rounded-2xl  hover:rounded-lg hover:bg-blue-600 text-white cursor-pointer hover:shadow-xl/30 "
               >
                 Edit
@@ -93,7 +88,6 @@ function ManageSkill() {
               <Link
                 onClick={() => handleDelete(skill._id)}
                 variant="contained"
-                endIcon={<DeleteIcon />}
                 className="outline-1 w-fit  text-center bg-blue-400 font-semibold px-4 rounded-2xl  hover:rounded-lg hover:bg-blue-600 text-white cursor-pointer active:bg-red-500 decoration-none"
               >
                 Delete

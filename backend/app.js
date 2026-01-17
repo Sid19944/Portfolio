@@ -10,18 +10,18 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173","https://test-4q7o.onrender.com",
+      "http://localhost:5173",
       process.env.DASHBOARD_URL,
       process.env.FRONTEND_URL,
     ],
     credentials: true,
-  })
+  }),
 );
 app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp/",
-  })
+  }),
 );
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

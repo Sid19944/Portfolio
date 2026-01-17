@@ -17,7 +17,8 @@ import ManageMessage from "./message/ManageMessage";
 import Account from "./user/Account";
 import Dashboard from "./dashboard/dashboard";
 import AddTimeLine from "./timeLine/AddTimeLine";
-import { userApi, authApiFrontend } from "../Api";
+import { userApi } from "../Api";
+import Loading from "./utils/Loading";
 
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
 import axios from "axios";
@@ -28,17 +29,21 @@ function Home() {
   const [activePage, setActivePage] = useState("dashboard");
   const [authenticated, setAutneticated] = useState(false);
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const logout = () => {
+    setLoading(true);
     userApi
       .post("/logout")
       .then((res) => {
         toast.success(res.data.message);
+        setLoading(false);
         setTimeout(() => {
           navigate("/login");
         }, 3000);
       })
       .catch((err) => {
+        setLoading(false);
         toast.error(err.response.data.message);
       });
   };
@@ -52,7 +57,7 @@ function Home() {
         setAutneticated(res.data.authenticated);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         navigate("/login");
       });
     userApi
@@ -203,7 +208,7 @@ function Home() {
               <ul className="flex flex-col gap-2">
                 <li className="cursor-pointer">
                   <Link
-                    className="h-fit w-full group"
+                    className={`h-fit w-full group blur-[0.5px] ${activePage == "dashboard" ? "text-blue-500 font-semibold blur-none" : ""}`}
                     onClick={() => {
                       setShowMenu(!showMenu);
                       setActivePage("dashboard");
@@ -214,7 +219,7 @@ function Home() {
                 </li>
                 <li className="cursor-pointer">
                   <Link
-                    className="h-fit w-full group"
+                    className={`h-fit w-full group blur-[0.5px] ${activePage == "addProject" ? "text-blue-500 font-semibold blur-none" : ""}`}
                     onClick={() => {
                       setShowMenu(!showMenu);
                       setActivePage("addProject");
@@ -225,7 +230,7 @@ function Home() {
                 </li>
                 <li className="cursor-pointer">
                   <Link
-                    className="h-fit w-full group"
+                    className={`h-fit w-full group blur-[0.5px] ${activePage == "addSkill" ? "text-blue-500 font-semibold blur-none" : ""}`}
                     onClick={() => {
                       setShowMenu(!showMenu);
                       setActivePage("addSkill");
@@ -236,7 +241,7 @@ function Home() {
                 </li>
                 <li className="cursor-pointer">
                   <Link
-                    className="h-fit w-full group"
+                    className={`h-fit w-full group blur-[0.5px] ${activePage == "addTimeLine" ? "text-blue-500 font-semibold blur-none" : ""}`}
                     onClick={() => {
                       setShowMenu(!showMenu);
                       setActivePage("addTimeLine");
@@ -247,7 +252,7 @@ function Home() {
                 </li>
                 <li className="cursor-pointer">
                   <Link
-                    className="h-fit w-full group"
+                    className={`h-fit w-full group blur-[0.5px] ${activePage == "messages" ? "text-blue-500 font-semibold blur-none" : ""}`}
                     onClick={() => {
                       setShowMenu(!showMenu);
                       setActivePage("messages");
@@ -258,7 +263,7 @@ function Home() {
                 </li>
                 <li className="cursor-pointer">
                   <Link
-                    className="h-fit w-full group"
+                    className={`h-fit w-full group blur-[0.5px] ${activePage == "account" ? "text-blue-500 font-semibold blur-none" : ""}`}
                     onClick={() => {
                       setShowMenu(!showMenu);
                       setActivePage("account");
@@ -268,7 +273,12 @@ function Home() {
                   </Link>
                 </li>
                 <li className="cursor-pointer">
-                  <Link className="h-fit w-full group" onClick={logout}>
+                  <Link
+                    className="h-fit w-full group"
+                    onClick={() => {
+                      (logout, setShowMenu(!showMenu));
+                    }}
+                  >
                     <LogoutIcon /> Logout
                   </Link>
                 </li>
@@ -318,6 +328,7 @@ function Home() {
       </main>
 
       <ToastContainer />
+      {loading ? <Loading text="Logouting...." /> : ""}
     </div>
   );
 }

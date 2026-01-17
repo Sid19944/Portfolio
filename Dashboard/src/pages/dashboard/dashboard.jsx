@@ -185,7 +185,7 @@ function dashboard() {
 
         <div
           id="skills"
-          className="p-2 gap-2 w-full sm:w-[40%] rounded-lg bg-gray-800 mb-4"
+          className="p-2 gap-2 w-full sm:w-[30%] rounded-lg bg-gray-800 mb-4"
         >
           <h2 className="w-full p-2 rounded-lg bg-gray-900 mb-2 text-2xl font-bold items-center justify-between">
             Skills
@@ -205,16 +205,13 @@ function dashboard() {
               <div className="w-[50%] flex items-center justify-center">
                 <h1>{skill?.skillName}</h1>
               </div>
-              <Link className="w-[10%] flex items-center justify-center text-green-700 hover:scale-120 hover:text-green-400 active:text-green-400 active:scale-120">
-                <VisibilityOutlinedIcon className="cursor-pointer" />
-              </Link>
             </div>
           ))}
         </div>
 
         <div
           id="timeline"
-          className="p-2 gap-2 w-full sm:w-[59%] rounded-lg bg-gray-800 mb-4"
+          className="p-2 gap-2 w-full sm:w-[69%] rounded-lg bg-gray-800 mb-4"
         >
           <h2 className="w-full p-2 rounded-lg bg-gray-900 mb-2 text-2xl font-bold items-center justify-between">
             Time Line
@@ -240,16 +237,18 @@ function dashboard() {
                   <input
                     className="w-[40%] text-center outline-none h-full rounded-lg px-2"
                     defaultValue={timeLine?.from}
+                    disabled
                   ></input>
                   <span>-</span>
                   <input
                     className={`w-[40%] text-center outline-none h-full rounded-lg px-2`}
                     defaultValue={timeLine?.to}
+                    disabled
                   ></input>
                 </div>
                 <div className="hidden sm:flex w-[28%] outline-1 rounded-lg justify-around items-center bg-gray-900">
                   <Link
-                    className="text-yellow-800 hover:text-yellow-400 active:yellow-red-400 hover:scale-120 active:scale-120 group"
+                    className="text-yellow-800 hover:text-yellow-400 active:text-yellow-400 hover:scale-120 active:scale-120 group"
                     to={`/edit/timeline/${timeLine?._id}`}
                   >
                     <EditIcon className="cursor-pointer" />
