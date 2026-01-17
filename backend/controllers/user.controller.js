@@ -4,6 +4,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { v2 as cloudinary } from "cloudinary";
 import httpStatus from "http-status";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { sendMail } from "../utils/mail.service.js";
 
 const generateTokenAndRefreshToken = async (user, next) => {
