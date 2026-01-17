@@ -103,8 +103,9 @@ const registerUser = asyncHandler(async (req, res, next) => {
 });
 
 const loginUser = asyncHandler(async (req, res, next) => {
+  console.time("START")
   const { email, password } = req.body;
-  // console.log(req.body);
+  console.timeEnd("START")
   if (!(email && password)) {
     return next(new ErrorHandler("Email and Password is required"));
   }
@@ -113,12 +114,15 @@ const loginUser = asyncHandler(async (req, res, next) => {
     return next(new ErrorHandler("Email and Password is required"));
   }
 
+  console.time("DB_FIND")
   const user = await User.findOne({ email: email.toLowerCase() })
+  console.timeEnd("DB_FIND")
   if (!user) {
     return next(new ErrorHandler("Invalid Email ID", 400));
   }
-
-  const isPasswordCorrect = await bcrypt.compare(password, user.password)
+  console.time("PASS")
+  const isPasswordCorrect = await user.isPasswordCorrect(password)
+  console.timeEnd("PASS")
 
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Invalid Password", 400));
@@ -270,7 +274,7 @@ const updatePassword = asyncHandler(async (req, res, next) => {
   }
 
   const user = await User.findById(req.user._id)
-  const isPasswordCorrect = await bcrypt.compare(password, user.password)
+  const isPasswordCorrect = await user.isPasswordCorrect(password)
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Wrond password", 400));
   }
