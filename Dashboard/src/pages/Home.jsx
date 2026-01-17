@@ -49,9 +49,10 @@ function Home() {
         withCredentials: true,
       })
       .then((res) => {
-        setAutneticated(res?.data?.authenticated);
+        setAutneticated(res.data.authenticated);
       })
       .catch((err) => {
+        console.log(err)
         navigate("/login");
       });
     userApi

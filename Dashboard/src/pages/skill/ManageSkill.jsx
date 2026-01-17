@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import BackToDashboard from "../utils/BackToDashboard";
 
-import Loading from "../utils/Loading"
+import Loading from "../utils/Loading";
 
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -26,9 +26,9 @@ function ManageSkill() {
       .get("/all")
       .then((res) => setAllSkill(res.data.skills))
       .catch((err) =>
-        toast.error(err.response.data.message, { position: "top-right" })
+        toast.error(err.response.data.message, { position: "top-right" }),
       );
-      setBuffering(false)
+    setBuffering(false);
   }, [loading]);
 
   const handleDelete = async (id) => {
@@ -64,36 +64,40 @@ function ManageSkill() {
             <AddLinkIcon />
           </Link>
         </div>
-        <BackToDashboard/>
+        <BackToDashboard />
         {allSkill.map((skill) => (
           <div
-            className="outline-1 w-full rounded-lg mb-4 p-1 h-fit min-h-[10%] flex justify-around items-center flex-wrap"
+            className="p-2 gap-2 w-full rounded-lg bg-gray-900 mb-4 flex justify-between outline-1 shadow-md hover:shadow-blue-600"
             key={skill._id}
           >
-            <img
-              src={skill.skillImage.url}
-              alt="Skill Image"
-              className="object-cover w-[20%] outline-2 outline-black max-h-[70px] max-w-[90px] mb-2"
-            />
-            <span className=" text-center p-2 mb-2">{skill.skillName}</span>
+            <div className="w-[25%] ">
+              <img
+                src={skill.skillImage.url}
+                alt="Skill Image"
+                className="max-w-20 outline-1 rounded-lg"
+              />
+            </div>
+            <div className="w-[50%] flex items-center justify-center">
+              <h1>{skill?.skillName}</h1>
+            </div>
 
-            <div className="flex gap-2.5">
-              <Button
+            <div className="flex gap-2.5 items-center">
+              <Link
                 onClick={() => handleEdit(skill._id)}
                 variant="contained"
                 endIcon={<EditIcon />}
-                className="outline-1 w-fit  text-center bg-blue-400 font-semibold px-4 py-2 rounded-2xl  hover:rounded-lg hover:bg-blue-600 text-white cursor-pointer hover:shadow-xl/30 "
+                className="outline-1 w-fit  text-center bg-blue-400 font-semibold px-4 rounded-2xl  hover:rounded-lg hover:bg-blue-600 text-white cursor-pointer hover:shadow-xl/30 "
               >
                 Edit
-              </Button>
-              <Button
+              </Link>
+              <Link
                 onClick={() => handleDelete(skill._id)}
                 variant="contained"
                 endIcon={<DeleteIcon />}
-                className="outline-1 w-fit  text-center bg-blue-400 font-semibold px-4 py-2 rounded-2xl  hover:rounded-lg hover:bg-blue-600 text-white cursor-pointer active:bg-red-500 decoration-none"
+                className="outline-1 w-fit  text-center bg-blue-400 font-semibold px-4 rounded-2xl  hover:rounded-lg hover:bg-blue-600 text-white cursor-pointer active:bg-red-500 decoration-none"
               >
                 Delete
-              </Button>
+              </Link>
             </div>
           </div>
         ))}
