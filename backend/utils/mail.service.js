@@ -1,5 +1,5 @@
 import nodemialer from "nodemailer";
-import ErrorHandler from "./errorHandler";
+import ErrorHandler from "./errorHandler.js";
 
 const transporter = nodemialer.createTransport({
   host: "smtp.gmail.com",
