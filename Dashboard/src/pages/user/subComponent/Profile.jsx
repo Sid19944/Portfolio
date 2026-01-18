@@ -7,7 +7,7 @@ import { userApi } from "../../../Api";
 
 function Profile() {
   const [user, setUser] = useState({});
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     userApi
       .get("/me")

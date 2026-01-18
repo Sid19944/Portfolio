@@ -33,8 +33,6 @@ function UpdateProfile() {
     }
   }, [iAm]);
 
-  console.log(newIam);
-  console.log("A",sendIam);
 
   useEffect(()=>{
     setSendIam(newIam.split(","));
