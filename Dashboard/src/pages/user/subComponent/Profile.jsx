@@ -7,7 +7,7 @@ import { userApi } from "../../../Api";
 
 function Profile() {
   const [user, setUser] = useState({});
-  // console.log(user);
+  console.log(user);
   useEffect(() => {
     userApi
       .get("/me")
@@ -21,7 +21,7 @@ function Profile() {
       });
   }, []);
   return (
-    <div className="h-screen">
+    <div className="h-[80vh]">
       <div id="profile" className="flex p-4 sm:max-w-3xl lg:max-w-5xl">
         <div className="flex gap-2 flex-wrap w-full h-full justify-around">
           <div className="flex w-[90%] sm:w-full gap-2 min-w-[230px] justify-around flex-wrap">
@@ -31,7 +31,9 @@ function Profile() {
                 alt="Avatar"
                 className="max-h-[200px] max-w-[200px]"
               />
-              <span className="group-hover:inline-block hidden absolute">Avatar</span>
+              <span className="group-hover:inline-block hidden absolute">
+                Avatar
+              </span>
             </Link>
             <Link to={user?.resume?.url} className="group">
               <img
@@ -39,7 +41,9 @@ function Profile() {
                 alt="Avatar"
                 className="max-h-[200px] max-w-[200px]"
               />
-              <span className="group-hover:inline-block hidden absolute">Resume</span>
+              <span className="group-hover:inline-block hidden absolute">
+                Resume
+              </span>
             </Link>
           </div>
           <div className="flex w-[90%] min-w-[220px] flex-col gap-1">
@@ -77,7 +81,10 @@ function Profile() {
                   <label htmlFor="gitHubUrl" className="w-full">
                     GirHub Repositery{" "}
                   </label>
-                  <Link to={user.githubUrl} className="text-blue-600 hover:underline">
+                  <Link
+                    to={user.githubUrl}
+                    className="text-blue-600 hover:underline"
+                  >
                     {user.githubUrl}
                   </Link>
                 </div>
@@ -90,8 +97,10 @@ function Profile() {
                   <label htmlFor="gitHubUrl" className="w-full">
                     Portfolio URL{" "}
                   </label>
-                  <Link to={user.portfolioUrl}
-                   className="text-blue-600 hover:underline">
+                  <Link
+                    to={user.portfolioUrl}
+                    className="text-blue-600 hover:underline"
+                  >
                     {user.portfolioUrl}
                   </Link>
                 </div>
@@ -104,7 +113,10 @@ function Profile() {
                   <label htmlFor="instagram" className="w-full">
                     Instagram ID
                   </label>
-                  <Link to={user.instagramUrl} className="text-blue-600 hover:underline">
+                  <Link
+                    to={user.instagramUrl}
+                    className="text-blue-600 hover:underline"
+                  >
                     {user.instagramUrl}
                   </Link>
                 </div>
@@ -117,7 +129,11 @@ function Profile() {
                   <label htmlFor="linkedInUrl" className="w-full">
                     LinkedInUrl
                   </label>
-                  <Link to={user.linkedInUrl} className="text-blue-600 hover:underline">
+                  <Link
+                    to={user.linkedInUrl}
+                    // href={user.linkedInUrl}
+                    className="text-blue-600 hover:underline"
+                  >
                     {user.linkedInUrl}
                   </Link>
                 </div>
@@ -128,9 +144,14 @@ function Profile() {
           ) : (
             ""
           )}
+          <div className="w-[90%] rounded-lg outline-1 p-2 gap-2 flex ">
+            {user?.iAm?.map((item) => (
+              <span>{item},</span>
+            ))}
+          </div>
         </div>
       </div>
-      {/* <div className="h-30"></div> */}
+      <div className="h-30"></div>
       <ToastContainer />
     </div>
   );
