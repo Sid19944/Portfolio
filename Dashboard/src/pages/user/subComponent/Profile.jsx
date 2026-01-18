@@ -77,7 +77,7 @@ function Profile() {
                   <label htmlFor="gitHubUrl" className="w-full">
                     GirHub Repositery{" "}
                   </label>
-                  <Link className="text-blue-600 hover:underline">
+                  <Link to={user.githubUrl} className="text-blue-600 hover:underline">
                     {user.githubUrl}
                   </Link>
                 </div>
@@ -90,7 +90,8 @@ function Profile() {
                   <label htmlFor="gitHubUrl" className="w-full">
                     Portfolio URL{" "}
                   </label>
-                  <Link className="text-blue-600 hover:underline">
+                  <Link to={user.portfolioUrl}
+                   className="text-blue-600 hover:underline">
                     {user.portfolioUrl}
                   </Link>
                 </div>
@@ -103,7 +104,7 @@ function Profile() {
                   <label htmlFor="instagram" className="w-full">
                     Instagram ID
                   </label>
-                  <Link className="text-blue-600 hover:underline">
+                  <Link to={user.instagramUrl} className="text-blue-600 hover:underline">
                     {user.instagramUrl}
                   </Link>
                 </div>
@@ -116,7 +117,7 @@ function Profile() {
                   <label htmlFor="linkedInUrl" className="w-full">
                     LinkedInUrl
                   </label>
-                  <Link className="text-blue-600 hover:underline">
+                  <Link to={user.linkedInUrl} className="text-blue-600 hover:underline">
                     {user.linkedInUrl}
                   </Link>
                 </div>
