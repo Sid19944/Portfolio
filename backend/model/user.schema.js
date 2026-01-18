@@ -11,7 +11,7 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: true,
-      unique : true
+      unique: true,
     },
     password: {
       type: String,
@@ -21,8 +21,8 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: [true, "Email is required"],
-      unique : true,
-      index : true
+      unique: true,
+      index: true,
     },
     phone: {
       type: String,
@@ -52,6 +52,11 @@ const userSchema = new Schema(
         required: true,
       },
     },
+    iAm: [
+      {
+        type: String,
+      },
+    ],
     portfolioUrl: String,
     githubUrl: String,
     instagramUrl: String,
@@ -75,7 +80,7 @@ userSchema.pre("save", async function () {
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
-  return await  bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
 userSchema.methods.generateToken = function () {

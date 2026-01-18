@@ -18,8 +18,8 @@ const generateTokenAndRefreshToken = async (user, next) => {
     return next(
       new ErrorHandler(
         `Error while generating the Token and RefreshToken, ${err}`,
-        500
-      )
+        500,
+      ),
     );
   }
 };
@@ -34,13 +34,13 @@ const registerUser = asyncHandler(async (req, res, next) => {
     avatar.tempFilePath,
     {
       folder: "AVATAR",
-    }
+    },
   );
 
   if (!cloudinaryResForAvatar || cloudinaryResForAvatar.error) {
     console.error(
       `Cloudinary Error`,
-      cloudinaryResForAvatar.error || "Unknow Error from cloudinary"
+      cloudinaryResForAvatar.error || "Unknow Error from cloudinary",
     );
   }
 
@@ -48,13 +48,13 @@ const registerUser = asyncHandler(async (req, res, next) => {
     resume.tempFilePath,
     {
       folder: "RESUME",
-    }
+    },
   );
 
   if (!cloudinaryResForResume || cloudinaryResForResume.error) {
     console.error(
       `Cloudinary Error`,
-      cloudinaryResForResume.error || "Unknow Error from cloudinary"
+      cloudinaryResForResume.error || "Unknow Error from cloudinary",
     );
   }
 
@@ -66,7 +66,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
 
   if (
     [fullName, username, password, email, phone, aboutMe].some(
-      (field) => field?.trim() === ""
+      (field) => field?.trim() === "",
     )
   ) {
     return next(new ErrorHandler("All feild are Required", 400));
@@ -91,7 +91,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
 
   if (!user || user?.error) {
     return next(
-      new ErrorHandler(`something wrong while Regster the USER ${error}`)
+      new ErrorHandler(`something wrong while Regster the USER ${error}`),
     );
   }
 
@@ -103,9 +103,9 @@ const registerUser = asyncHandler(async (req, res, next) => {
 });
 
 const loginUser = asyncHandler(async (req, res, next) => {
-  console.time("START")
+  
   const { email, password } = req.body;
-  console.timeEnd("START")
+  
   if (!(email && password)) {
     return next(new ErrorHandler("Email and Password is required"));
   }
@@ -114,23 +114,22 @@ const loginUser = asyncHandler(async (req, res, next) => {
     return next(new ErrorHandler("Email and Password is required"));
   }
 
-  console.time("DB_FIND")
-  const user = await User.findOne({ email: email.toLowerCase() })
-  console.timeEnd("DB_FIND")
+  
+  const user = await User.findOne({ email: email.toLowerCase() });
+  
   if (!user) {
     return next(new ErrorHandler("Invalid Email ID", 400));
   }
-  console.time("PASS")
-  const isPasswordCorrect = await user.isPasswordCorrect(password)
-  console.timeEnd("PASS")
+  
+  const isPasswordCorrect = await user.isPasswordCorrect(password);
+  
 
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Invalid Password", 400));
   }
 
-  const { accessToken, refreshToken } = await generateTokenAndRefreshToken(
-    user
-  );
+  const { accessToken, refreshToken } =
+    await generateTokenAndRefreshToken(user);
   user.password = null;
 
   return res
@@ -203,7 +202,10 @@ const updateProfile = asyncHandler(async (req, res, next) => {
     githubUrl: req.body?.githubUrl?.trim(),
     instagramUrl: req.body?.instagramUrl?.trim(),
     linkedInUrl: req.body?.linkedInUrl?.trim(),
+    iAm: req.body?.iAm,
   };
+
+  // console.log(newUserData.iAm)
   // if avatar is availabel then updata
   if (req.files && req.files.avatar) {
     const avatar = req.files.avatar;
@@ -214,7 +216,7 @@ const updateProfile = asyncHandler(async (req, res, next) => {
       avatar.tempFilePath,
       {
         folder: "AVATAR",
-      }
+      },
     );
 
     newUserData.avatar = {
@@ -232,7 +234,7 @@ const updateProfile = asyncHandler(async (req, res, next) => {
       resume.tempFilePath,
       {
         folder: "RESUME",
-      }
+      },
     );
 
     newUserData.resume = {
@@ -261,7 +263,7 @@ const updatePassword = asyncHandler(async (req, res, next) => {
   }
   if (
     [currentPassword, newPassword, confirmNewPassword].some(
-      (field) => field?.trim === ""
+      (field) => field?.trim === "",
     )
   ) {
     return next(new ErrorHandler("Please Fill Full Form", 400));
@@ -269,12 +271,12 @@ const updatePassword = asyncHandler(async (req, res, next) => {
 
   if (newPassword !== confirmNewPassword) {
     return next(
-      new ErrorHandler("new password and confirm password is not same", 400)
+      new ErrorHandler("new password and confirm password is not same", 400),
     );
   }
 
-  const user = await User.findById(req.user._id)
-  const isPasswordCorrect = await user.isPasswordCorrect(currentPassword)
+  const user = await User.findById(req.user._id);
+  const isPasswordCorrect = await user.isPasswordCorrect(currentPassword);
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Wrond password", 400));
   }
@@ -302,7 +304,7 @@ const refreshAccessToken = asyncHandler(async (req, res, next) => {
 
     const decodedRefreshToken = await jwt.verify(
       incommingRefreshToken,
-      process.env.JWT_REFRESH_TOKEN_SECRET
+      process.env.JWT_REFRESH_TOKEN_SECRET,
     );
 
     if (!decodedRefreshToken) {
@@ -312,7 +314,7 @@ const refreshAccessToken = asyncHandler(async (req, res, next) => {
     const user = await User.findById(decodedRefreshToken._id);
     if (!user) {
       return next(
-        new ErrorHandler("Invalid refresh token, Please login again")
+        new ErrorHandler("Invalid refresh token, Please login again"),
       );
     }
     const newAccessToken = await user.generateToken();
@@ -335,14 +337,13 @@ const refreshAccessToken = asyncHandler(async (req, res, next) => {
 });
 
 const getUserForPortfolio = asyncHandler(async (req, res, next) => {
-  const id = "695a5d6cc2633209ea0bbacf";
-  const user = await User.findById(id);
+  const user = await User.findOne();
   if (!user) {
     return next(
       new ErrorHandler(
         "Internal server error",
-        httpStatus.INTERNAL_SERVER_ERROR
-      )
+        httpStatus.INTERNAL_SERVER_ERROR,
+      ),
     );
   }
   return res.status(200).json({
@@ -368,7 +369,7 @@ const SendForgotPasswordLink = asyncHandler(async (req, res, next) => {
   const resetToken = await user.generateResetToken();
   if (!resetToken) {
     return next(
-      new ErrorHandler("Something wrong while generating reset token")
+      new ErrorHandler("Something wrong while generating reset token"),
     );
   }
   user.resetToken = resetToken;
@@ -399,12 +400,12 @@ const setNewForgotPassword = asyncHandler(async (req, res, next) => {
 
   if (newPassword !== confirmPassword) {
     return next(
-      new ErrorHandler("New Password and confirm  Password doesn't match")
+      new ErrorHandler("New Password and confirm  Password doesn't match"),
     );
   }
   const decodedResetToken = await jwt.verify(
     resetToken,
-    process.env.JWT_RESET_TOKEN_SECRET
+    process.env.JWT_RESET_TOKEN_SECRET,
   );
 
   if (!decodedResetToken) {
