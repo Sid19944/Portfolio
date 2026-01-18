@@ -24,7 +24,7 @@ const sendMail = async (options, next) => {
     console.log(info);
     console.log("mail successfully send");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
 
     return next(
       new ErrorHandler(
@@ -34,5 +34,7 @@ const sendMail = async (options, next) => {
     );
   }
 };
+
+// VYRFYZX46YER4LVF1T5T613N
 
 export { sendMail };
