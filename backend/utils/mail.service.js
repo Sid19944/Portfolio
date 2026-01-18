@@ -3,7 +3,7 @@ import nodemialer from "nodemailer";
 const transporter = nodemialer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  // secure: false,
+  secure: true,
   service: "gmail",
   auth: {
     user: "realme19948@gmail.com",
