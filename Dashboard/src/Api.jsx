@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3000";
+const url = "https://portfolio-backend-xmod.onrender.com";
 
 const userApi = axios.create({
   baseURL: `${url}/auth/v1/user`,
