@@ -22,6 +22,7 @@ import Loading from "./utils/Loading";
 
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
 import axios from "axios";
+import { url } from "../Api";
 
 function Home() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function Home() {
 
   const logout = () => {
     setLoading(true);
+    setShowMenu(!showMenu)
     userApi
       .post("/logout")
       .then((res) => {
@@ -40,7 +42,7 @@ function Home() {
         setLoading(false);
         setTimeout(() => {
           navigate("/login");
-        }, 3000);
+        }, 1000);
       })
       .catch((err) => {
         setLoading(false);
@@ -50,7 +52,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("https://portfolio-backend-xmod.onrender.com/auth/v1", {
+      .get(`${url}/auth/v1`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -275,9 +277,7 @@ function Home() {
                 <li className="cursor-pointer">
                   <Link
                     className="h-fit w-full group"
-                    onClick={() => {
-                      (logout, setShowMenu(!showMenu));
-                    }}
+                    onClick={logout}
                   >
                     <LogoutIcon /> Logout
                   </Link>

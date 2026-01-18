@@ -27,12 +27,4 @@ const timeLineApi = axios.create({
   withCredentials: true,
 });
 
-
-export {
-  userApi,
-  skillApi,
-  messageApi,
-  projectApi,
-  timeLineApi,
-  
-};
+export { userApi, skillApi, messageApi, projectApi, timeLineApi, url };

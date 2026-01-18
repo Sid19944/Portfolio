@@ -51,7 +51,7 @@ function Single() {
           <p className="font-bold mb-3 underline">Description</p>
 
           {description.length ? (
-            <ul>
+            <ul className="pl-4">
               {description.map((desc, idx) => (
                 <li className="list-disc " key={idx}>
                   {desc}.

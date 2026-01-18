@@ -4,7 +4,7 @@ const transporter = nodemialer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   // secure: false,
-    service: "gmail",
+  service: "gmail",
   auth: {
     user: "realme19948@gmail.com",
     pass: "udurggqkwptcczln",
@@ -19,6 +19,7 @@ const sendMail = async (options) => {
       subject: options.subject,
       html: options.message,
     });
+    console.log(info);
     console.log("mail successfully send");
   } catch (err) {
     return res.status(500).json({
