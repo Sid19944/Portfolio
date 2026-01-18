@@ -6,10 +6,9 @@ const transporter = nodemialer.createTransport({
   service: "gmail",
   port: 465,
   secure: true,
-
   auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
+    user: "realme19948@gmail.com",
+    pass: "udur ggqk wptc czln",
   },
 });
 
@@ -26,6 +25,7 @@ const sendMail = async (options) => {
     console.log("mail successfully send");
   } catch (err) {
     console.log(err);
+
     // return next(
     //   new ErrorHandler(
     //     `Something wrong while send mail to the user, Error in mail.server, ${err} `,
