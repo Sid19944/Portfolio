@@ -103,7 +103,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
 });
 
 const loginUser = asyncHandler(async (req, res, next) => {
-  
+  console.log("!")
   const { email, password } = req.body;
   
   if (!(email && password)) {

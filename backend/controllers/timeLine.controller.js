@@ -1,10 +1,10 @@
 import ErrorHandler from "../utils/errorHandler.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { TimeLine } from "../model/timeLine.js";
+import { TimeLine } from "../model/timeLine.schema.js";
 
 const addTimeLine = asyncHandler(async (req, res, next) => {
-  const { name, from, to } = req.body;
-  if (!name?.trim() || !from || !to) {
+  const { name, from, to, about } = req.body;
+  if (!name?.trim() || !from || !to || !about) {
     return next(ErrorHandler("Please Enter All Data", 400));
   }
   if (
@@ -19,6 +19,7 @@ const addTimeLine = asyncHandler(async (req, res, next) => {
     name: name?.trim(),
     from,
     to,
+    about : about?.trim()
   });
 
   if (!newTimeLine) {
@@ -39,6 +40,7 @@ const editTimeLine = asyncHandler(async (req, res, next) => {
     name: req.body?.name?.trim(),
     from: req.body?.from,
     to: req.body?.to,
+    about : req.body?.about
   };
 
   if (
