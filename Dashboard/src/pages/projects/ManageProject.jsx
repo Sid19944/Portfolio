@@ -87,7 +87,7 @@ function ManageProject() {
       {allProject?.map((project) => (
         <div
           key={project._id}
-          className="w-full flex justify-between mb-4 flex-wrap outline-1 rounded-lg p-2 text-center shadow-md shadow-blue-600"
+          className="w-full flex justify-between mb-4 flex-wrap outline-1 rounded-lg p-2 text-center shadow-md shadow-blue-600 items-center"
         >
           <div className="w-full md:w-[70%] flex justify-around items-center">
             <div className="w-[10%] hidden md:inline-block">
@@ -107,7 +107,7 @@ function ManageProject() {
               {project.deployed ? "YES" : "NO"}
             </div>
           </div>
-          <div className="w-full md:w-[25%] flex justify-around outline-1 rounded-lg items-center bg-gray-100">
+          <div className="w-full md:w-[25%] flex justify-around outline-1 rounded-lg items-center bg-gray-100 h-fit">
             <Link
               to={`/update/project/${project._id}`}
               className="w-[10%] px-4 rounded-lg flex justify-center text-amber-400 hover:text-shadow-sm text-shadow-black"
