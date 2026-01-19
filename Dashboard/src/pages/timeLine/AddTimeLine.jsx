@@ -12,14 +12,15 @@ function AddTimeLine() {
   const [name, setName] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [about, setAbout] = useState("");
 
   const handleAdd = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setLoading(true);
     timeLineApi
-      .post("/add", { name, from, to }, { withCredentials: true })
+      .post("/add", { name, from, to, about }, { withCredentials: true })
       .then((res) => {
-        toast.success(res.data.message,{position : "bottom-left"});
+        toast.success(res.data.message, { position: "bottom-left" });
         setName("");
         setFrom("");
         setTo("");
@@ -74,6 +75,19 @@ function AddTimeLine() {
             placeholder={`from 1980 to ${new Date().getFullYear()}`}
             className="w-full outline-3 rounded-lg px-2 outline-purple-600"
           />
+        </div>
+        <div className="outline-1 flex p-2 rounded-lg gap-2 items-center bg-gray-900">
+          <label htmlFor="to" className="w-[20%]">
+            about
+          </label>
+          <textarea
+          rows={4}
+            type="text"
+            value={about}
+            onChange={(e) => setAbout(e.target.value)}
+            placeholder="Enter detail "
+            className="w-full outline-3 rounded-lg px-2 outline-purple-600"
+          ></textarea>
         </div>
         {from > new Date().getFullYear() || to > new Date().getFullYear() ? (
           <h1 className="text-red-600 underline">

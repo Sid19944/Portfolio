@@ -28,15 +28,15 @@ function Login() {
       const res = await userApi.post("/login", loginDate, {
         withCredentials: true,
       });
-      toast.success(res.data.message, { position: "bottom-left" });
+      toast.success(res?.data?.message, { position: "bottom-left" });
       // console.log(res);
 
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (err) {
-      toast.error(err.response.data.message, { position: "bottom-left" });
-      console.log(err.response.data.message);
+      toast.error(err?.response?.data?.message, { position: "bottom-left" });
+      console.log(err?.response?.data?.message);
     } finally {
       setLoading(false);
     }

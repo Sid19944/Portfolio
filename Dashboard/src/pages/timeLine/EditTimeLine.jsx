@@ -14,11 +14,12 @@ function ManageTimeLine() {
   const [name, setName] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [about, setAbout] = useState("")
 
   const handleSubmit = async () => {
     setLoading(true);
     await timeLineApi
-      .put(`/edit/${id}`, { name, from, to }, { withCredentials: true })
+      .put(`/edit/${id}`, { name, from, to, about }, { withCredentials: true })
       .then((res) => {
         toast.success(res.data.message);
         setTimeout(() => {
@@ -38,6 +39,7 @@ function ManageTimeLine() {
         setName(res.data.timeLine.name);
         setFrom(res.data.timeLine.from);
         setTo(res.data.timeLine.to);
+        setAbout(res.data.timeLine.about)
         setTimeLine(res.data.timeLine);
       })
       .catch((err) => {
@@ -82,6 +84,19 @@ function ManageTimeLine() {
             placeholder={`from 1980 to ${new Date().getFullYear()}`}
             className="w-full outline-3 rounded-lg px-2 outline-purple-600"
           />
+        </div>
+        <div className="outline-1 flex p-2 rounded-lg gap-2 items-center">
+          <label htmlFor="to" className="w-[20%]">
+            About
+          </label>
+          <textarea
+            type="text"
+            rows={4}
+            defaultValue={about}
+            onChange={(e) => setAbout(e.target.value)}
+            placeholder="Enter About"
+            className="w-full outline-3 rounded-lg px-2 outline-purple-600"
+          ></textarea>
         </div>
         {from > new Date().getFullYear() || to > new Date().getFullYear() ? (
           <h1 className="text-red-600 underline">

@@ -59,9 +59,9 @@ function ManageTimeLine() {
             className="w-full flex bg-gray-800 p-2 rounded-lg mb-2"
             key={timeLine._id}
           >
-            <div className="w-full flex gap-2 ">
+            <div className="w-full flex gap-2 flex-wrap outline-1 p-2 rounded-lg bg-gray-600">
               <div
-                className={`outline-1 px-2 rounded-lg w-1/2 p-2 bg-gray-900`}
+                className={`outline-1 px-2 rounded-lg w-[38%] p-2 bg-gray-900`}
               >
                 <input
                   className="w-full h-full rounded-lg px-2 outline-none"
@@ -70,7 +70,7 @@ function ManageTimeLine() {
                 ></input>
               </div>
               <div
-                className={`w-1/2 flex outline-1 px-2 rounded-lg justify-around items-center p-2 bg-gray-900`}
+                className={`w-[38%] flex outline-1 px-2 rounded-lg justify-around items-center p-2 bg-gray-900`}
               >
                 <input
                   className="w-[40%] text-center outline-none h-full rounded-lg px-2"
@@ -84,7 +84,7 @@ function ManageTimeLine() {
                   disabled
                 ></input>
               </div>
-              <div className="flex w-[28%] outline-1 rounded-lg justify-around items-center bg-gray-900">
+              <div className="flex w-[20%] outline-1 rounded-lg justify-around items-center bg-gray-900">
                 <Link
                   className="text-yellow-800 hover:text-yellow-400 active:text-yellow-400 hover:scale-120 active:scale-120 group"
                   to={`/edit/timeline/${timeLine?._id}`}
@@ -104,6 +104,12 @@ function ManageTimeLine() {
                   </span>
                 </Link>
               </div>
+              <div className="outline-1 w-full rounded-lg p-2 bg-gray-900">
+                <input type="text" defaultValue={timeLine?.about}/>
+
+              </div>
+
+
             </div>
           </div>
         ))}
