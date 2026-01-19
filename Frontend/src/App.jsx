@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div className="w-full flex justify-center p-1 font-serif">
-      <div className="w-full max-w-[900px] flex outline-1 text-sm sm:text-lg flex-wrap">
+      <div className="w-full max-w-[900px] flex text-sm sm:text-lg flex-wrap">
         <nav className="flex justify-end w-full gap-3 group py-2 border-b-1 mb-4 bg-black z-3 ">
           <a
             href="#aboutMe"
