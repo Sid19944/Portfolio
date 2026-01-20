@@ -98,7 +98,9 @@ function ManageSkill() {
         <ToastContainer />
         {loading ? <Loading text="Deleting..." /> : ""}
         {buffering ? <Loading text="Loading..." /> : <></>}
+        <div className="h-10"></div>
       </div>
+      
     </div>
   );
 }
