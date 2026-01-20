@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Typewriter } from "react-simple-typewriter";
+import Loading from "./Loading";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -56,39 +57,50 @@ function Home() {
   };
 
   useEffect(() => {
-    userUrl
-      .get("/me/portfolio")
-      .then((res) => {
-        // console.log(res.data)
-        setUser(res?.data?.user);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        toast.error(err?.response?.data?.message);
-      });
+    (async () => {
+      setLoading(true);
+      await userUrl
+        .get("/me/portfolio")
+        .then((res) => {
+          // console.log(res.data)
+          setUser(res?.data?.user);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+          toast.error(err?.response?.data?.message);
+        });
 
-    timeLineUrl
-      .get("/all")
-      .then((res) => {
-        setTimeLines(res?.data?.allTimeLine);
-      })
-      .catch((err) => {
-        toast.error(err?.response?.data?.message);
-        console.log(err.response);
-      });
+      await timeLineUrl
+        .get("/all")
+        .then((res) => {
+          setTimeLines(res?.data?.allTimeLine);
+        })
+        .catch((err) => {
+          toast.error(err?.response?.data?.message);
+          console.log(err.response);
+        });
 
-    skillUrl.get("/all").then((res) => {
-      setSkills(res?.data?.skills);
-    });
+      await skillUrl
+        .get("/all")
+        .then((res) => {
+          setSkills(res?.data?.skills);
+        })
+        .catch((err) => {
+          toast.error(err?.response?.data?.message);
+          console.log(err.response);
+        });
 
-    projectUrl
-      .get("/all")
-      .then((res) => {
-        setProjects(res?.data?.projects);
-      })
-      .catch((err) => {
-        toast.error(err?.response?.data?.message);
-      });
+      await projectUrl
+        .get("/all")
+        .then((res) => {
+          setProjects(res?.data?.projects);
+          setLoading(false);
+        })
+        .catch((err) => {
+          toast.error(err?.response?.data?.message);
+        });
+      setLoading(false);
+    })();
   }, []);
 
   return (
@@ -439,6 +451,7 @@ function Home() {
         </div>
       </div>
       <ToastContainer />
+      {loading && <Loading text="Loading..." />}
     </div>
   );
 }
