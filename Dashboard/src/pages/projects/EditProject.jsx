@@ -161,7 +161,7 @@ function EditProject() {
             <p className=" w-full lg:w-[25%] px-2 font-bold underline">
               Deployed
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 w-full lg:w-[75%]">
               <div>
                 <input
                   type="radio"
