@@ -20,7 +20,7 @@ function EditProject() {
   const [description, setDescription] = useState("");
   const [technologies, setTechnologies] = useState([]);
   const [image, setImage] = useState(null);
-  const [deployed, setDeployed] = useState("");
+  const [deployed, setDeployed] = useState(false);
   const [stack, setStack] = useState("");
   const [gitHubUrl, setGitHubUrl] = useState("");
   const [projectUrl, setProjectUrl] = useState("");
@@ -44,6 +44,10 @@ function EditProject() {
     formData.append("projectUrl", projectUrl);
   }
 
+  const handleDeploy = (e) => {
+    setDeployed(JSON.parse(e.target.value));
+  };
+
   const handleDelete = (id, techId) => {
     projectApi
       .delete(`/${id}/delete/tech/${techId}`, { withCredentials: true })
@@ -65,7 +69,7 @@ function EditProject() {
     projectApi
       .put(`/update/${id}`, formData, { withCredentials: true })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         toast.success(res.data.message, { position: "bottom-left" });
         setLoading(false);
         setTimeout(() => {
@@ -152,6 +156,36 @@ function EditProject() {
               value={projectUrl || ""}
               onChange={(e) => setProjectUrl(e.target.value)}
             ></input>
+          </div>
+          <div className="flex outline-1 flex-wrap rounded-lg p-3 justify-between mb-2 items-center">
+            <p className=" w-full lg:w-[25%] px-2 font-bold underline">
+              Deployed
+            </p>
+            <div className="flex gap-3">
+              <div>
+                <input
+                  type="radio"
+                  id="true"
+                  name="deployed"
+                  value={true}
+                  checked={deployed == true}
+                  onChange={handleDeploy}
+                />
+                <label htmlFor="true"> Yes</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  id="true"
+                  name="deployed"
+                  value={false}
+                  checked={deployed == false}
+                  onChange={handleDeploy}
+                />
+                <label htmlFor="true"> No</label>
+              </div>
+            </div>
           </div>
           <div className="flex flex-col outline-1 rounded-lg px-5 pb-5 justify-between ">
             <p className="font-bold underline mb-3">Description</p>
