@@ -272,13 +272,13 @@ function Home() {
                   SKILLS
                 </h1>
               </div>
-              <span className="absolute border-1 w-full"></span>
+              <span className="absolute border w-full"></span>
             </div>
-            <div className="flex flex-wrap gap-2 outline-1 p-2 rounded-lg outline-gray-600">
+            <div className="flex flex-wrap gap-2 md:gap-3 outline-1 p-1 md:p-2 rounded-lg outline-gray-600">
               {skills?.map((skill) => (
                 <div
                   key={skill?._id}
-                  className="w-22 h-22 md:w-28 md:h-28 outline-1 rounded-lg overflow-hidden"
+                  className="w-25 h-22 md:w-28 md:h-28 outline-1 rounded-lg overflow-hidden"
                 >
                   <img
                     src={skill?.skillImage?.url}
