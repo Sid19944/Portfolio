@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function RightImage({ project }) {
   const description = project?.description?.split(".");
   return (
-    <div className="flex p-1 mb-8 border-b border-b-gray-700  flex-wrap-reverse">
+    <div className="flex p-1 mb-8 border border-gray-500 rounded-lg flex-wrap-reverse">
       <div className="w-full sm:w-6/10 p-2">
         <h1 className="text-2xl font-bold tracking-[2px] mb-3 sm:block">
           {project?.title}
@@ -25,7 +25,7 @@ function RightImage({ project }) {
           <img
             src={project?.image?.url}
             alt="Project Image"
-            className="h-full"
+            className="h-full shadow-[0px_0px_5px_5px] shadow-blue-600 rounded-lg"
           />
         </Link>
       </div>

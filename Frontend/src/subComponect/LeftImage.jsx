@@ -4,13 +4,13 @@ import {Link} from "react-router-dom"
 function LeftImage({ project }) {
   const description = project?.description?.split(".");
   return (
-    <div className="flex p-1 mb-8 border-b border-b-gray-700 flex-wrap">
-      <div className="w-full sm:w-4/10 max-h-60 p-3 flex justify-center">
+    <div className="flex p-1 mb-8 border border-gray-500 rounded-lg flex-wrap">
+      <div className="w-full sm:w-4/10 max-h-60 p-3 flex justify-center ">
         <Link to={`/view/${project?._id}`}>
           <img
             src={project?.image?.url}
             alt="Project Image"
-            className="h-full"
+            className="h-full shadow-[0px_0px_5px_5px] shadow-blue-600 rounded-lg"
           />
         </Link>
       </div>
