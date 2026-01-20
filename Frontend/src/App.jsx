@@ -6,10 +6,12 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/view/:id" element={<ViewProject />} />
-    </Routes>
+    <div className="h-screen">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/view/:id" element={<ViewProject />} />
+      </Routes>
+    </div>
   );
 }
 
