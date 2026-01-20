@@ -274,7 +274,7 @@ function Home() {
               </div>
               <span className="absolute border w-full"></span>
             </div>
-            <div className="flex flex-wrap gap-2 md:gap-3 outline-1 p-1 md:p-2 rounded-lg outline-gray-600">
+            <div className="flex flex-wrap gap-2 md:gap-3 outline-1 p-3 md:p-2 rounded-lg outline-gray-600">
               {skills?.map((skill) => (
                 <div
                   key={skill?._id}
