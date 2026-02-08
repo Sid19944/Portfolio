@@ -9,8 +9,11 @@ function LeftImage({ project }) {
   return (
     <div className="flex p-4 mb-8 border border-gray-500 rounded-lg flex-wrap items-center">
       <Link to={`/view/${project?._id}`}>
-        <img
+        <video
           src={project?.image?.url}
+          autoPlay
+          muted
+          loop
           alt="Project Image"
           className="h-full shadow-[0px_0px_5px_5px] shadow-blue-600 rounded-lg"
         />

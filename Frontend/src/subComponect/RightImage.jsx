@@ -22,8 +22,11 @@ function RightImage({ project }) {
       </h1>
 
       <Link to={`/view/${project?._id}`} className="">
-        <img
+        <video
           src={project?.image?.url}
+          autoPlay
+          muted
+          loop
           alt="Project Image"
           className="h-full shadow-[0px_0px_5px_5px] shadow-blue-600 rounded-lg"
         />
