@@ -12,7 +12,7 @@ const addProject = asyncHandler(async (req, res, next) => {
   if (!image) {
     return next(new ErrorHandler("Project iamge is required", 400));
   }
-
+  const fileType = image?.mimetype?.split("/")
   const { title, description, technologies, stack } = req.body;
   if (
     !(title && description && technologies && stack) ||
@@ -24,6 +24,7 @@ const addProject = asyncHandler(async (req, res, next) => {
   const cloudinaryResForImage = await cloudinary.uploader.upload(
     image.tempFilePath,
     {
+      resource_type: fileType[0],
       folder: "PROJECT'S IMAGES",
     }
   );
@@ -110,9 +111,11 @@ const updateProject = asyncHandler(async (req, res, next) => {
   if (req.files && req.files.image) {
     const { image } = req.files;
 
+    const fileType = image?.mimetype?.split("/")
     const cloudinaryResForImage = await cloudinary.uploader.upload(
       image.tempFilePath,
       {
+        resource_type: fileType[0],
         folder: "PROJECT'S IMAGES",
       }
     );

@@ -91,8 +91,11 @@ function ManageProject() {
         >
           <div className="w-full md:w-[70%] flex justify-around items-center">
             <div className="w-[10%] hidden md:inline-block">
-              <img
+              <video
                 src={project?.image.url}
+                autoPlay
+                muted
+                loop
                 alt="Banner"
                 className="h-full outline-1 rounded-lg"
               />

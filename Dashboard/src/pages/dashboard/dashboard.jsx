@@ -143,8 +143,11 @@ function dashboard() {
               className="w-full flex gap-2  mb-2 justify-around flex-wrap p-1 outline-1 rounded-lg text-center shadow-md hover:shadow-blue-600 bg-gray-900"
             >
               <div className="w-[10%] hidden md:inline-block">
-                <img
+                <video
                   src={project.image.url}
+                  autoPlay
+                  muted
+                  loop
                   alt="Banner"
                   className="max-w-20 outline-1 rounded-lg"
                 />
