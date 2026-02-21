@@ -57,7 +57,9 @@ function Home() {
   };
 
   useEffect(() => {
+    
     (async () => {
+      console.time("start")
       setLoading(true);
       await userUrl
         .get("/me/portfolio")
@@ -81,11 +83,13 @@ function Home() {
         });
 
       setLoading(false);
+      console.timeEnd("start")
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
+      console.time("db")
       await skillUrl
         .get("/all")
         .then((res) => {
@@ -104,6 +108,7 @@ function Home() {
         .catch((err) => {
           toast.error(err?.response?.data?.message);
         });
+        console.timeEnd("db")
     })();
   }, []);
 
