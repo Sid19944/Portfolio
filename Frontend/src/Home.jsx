@@ -80,6 +80,12 @@ function Home() {
           console.log(err.response);
         });
 
+      setLoading(false);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
       await skillUrl
         .get("/all")
         .then((res) => {
@@ -89,7 +95,6 @@ function Home() {
           toast.error(err?.response?.data?.message);
           console.log(err.response);
         });
-
       await projectUrl
         .get("/all")
         .then((res) => {
@@ -99,7 +104,6 @@ function Home() {
         .catch((err) => {
           toast.error(err?.response?.data?.message);
         });
-      setLoading(false);
     })();
   }, []);
 
