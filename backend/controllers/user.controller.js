@@ -232,7 +232,7 @@ const updateProfile = asyncHandler(async (req, res, next) => {
     const cloudinaryResForResume = await cloudinary.uploader.upload(
       resume.tempFilePath,
       {
-        resource_type: "auto",
+        resource_type: "raw",
         folder: "RESUME",
       },
     );
