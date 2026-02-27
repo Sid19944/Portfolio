@@ -57,9 +57,8 @@ function Home() {
   };
 
   useEffect(() => {
-    
     (async () => {
-      console.time("start")
+      console.time("start");
       setLoading(true);
       await userUrl
         .get("/me/portfolio")
@@ -83,13 +82,12 @@ function Home() {
         });
 
       setLoading(false);
-      console.timeEnd("start")
+      console.timeEnd("start");
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
-      console.time("db")
       await skillUrl
         .get("/all")
         .then((res) => {
@@ -99,6 +97,11 @@ function Home() {
           toast.error(err?.response?.data?.message);
           console.log(err.response);
         });
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
       await projectUrl
         .get("/all")
         .then((res) => {
@@ -108,7 +111,6 @@ function Home() {
         .catch((err) => {
           toast.error(err?.response?.data?.message);
         });
-        console.timeEnd("db")
     })();
   }, []);
 
@@ -208,15 +210,15 @@ function Home() {
                 </div>
 
                 <div className="w-fit h-fit px-2  rounded-2xl bg-white text-black">
-                  <Link
+                  <a
                     className="hover:font-bold"
-                    to={user?.resume?.url}
-                    target="_blank"
+                    href={user?.resume?.url}
+                    download
                     rel="noopener noreferrer"
                   >
                     <OpenInNewIcon />
                     <span className="text-xs">Resume</span>
-                  </Link>
+                  </a>
                 </div>
               </div>
 

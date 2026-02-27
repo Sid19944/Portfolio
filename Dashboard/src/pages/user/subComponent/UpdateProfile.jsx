@@ -37,7 +37,6 @@ function UpdateProfile() {
   useEffect(()=>{
     setSendIam(newIam.split(","));
   },[newIam])
-  
 
   const formData = new FormData();
   if (fullName?.trim()) {

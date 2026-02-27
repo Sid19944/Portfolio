@@ -103,9 +103,9 @@ const registerUser = asyncHandler(async (req, res, next) => {
 });
 
 const loginUser = asyncHandler(async (req, res, next) => {
-  console.log("!")
+  console.log("!");
   const { email, password } = req.body;
-  
+
   if (!(email && password)) {
     return next(new ErrorHandler("Email and Password is required"));
   }
@@ -114,15 +114,13 @@ const loginUser = asyncHandler(async (req, res, next) => {
     return next(new ErrorHandler("Email and Password is required"));
   }
 
-  
   const user = await User.findOne({ email: email.toLowerCase() });
-  
+
   if (!user) {
     return next(new ErrorHandler("Invalid Email ID", 400));
   }
-  
+
   const isPasswordCorrect = await user.isPasswordCorrect(password);
-  
 
   if (!isPasswordCorrect) {
     return next(new ErrorHandler("Invalid Password", 400));
@@ -215,6 +213,7 @@ const updateProfile = asyncHandler(async (req, res, next) => {
     const cloudinaryResForAvatar = await cloudinary.uploader.upload(
       avatar.tempFilePath,
       {
+        resource_type: "auto",
         folder: "AVATAR",
       },
     );
@@ -233,6 +232,7 @@ const updateProfile = asyncHandler(async (req, res, next) => {
     const cloudinaryResForResume = await cloudinary.uploader.upload(
       resume.tempFilePath,
       {
+        resource_type: "auto",
         folder: "RESUME",
       },
     );
