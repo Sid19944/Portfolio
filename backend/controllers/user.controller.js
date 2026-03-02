@@ -190,6 +190,7 @@ const getUser = asyncHandler(async (req, res, next) => {
 });
 
 const updateProfile = asyncHandler(async (req, res, next) => {
+  console.log("A")
   const newUserData = {
     fullName: req.body.fullName?.trim(),
     username: req.body.username?.toLowerCase()?.trim(),
@@ -232,10 +233,13 @@ const updateProfile = asyncHandler(async (req, res, next) => {
     const cloudinaryResForResume = await cloudinary.uploader.upload(
       resume.tempFilePath,
       {
-        resource_type: "raw",
+        resource_type: "image",
         folder: "RESUME",
+        type: "upload",
+        access_mode: "public",
       },
     );
+    console.log(cloudinaryResForResume);
 
     newUserData.resume = {
       public_id: cloudinaryResForResume.public_id,

@@ -34,16 +34,7 @@ function Profile() {
                 Avatar
               </span>
             </Link>
-            <Link to={user?.resume?.url} className="group">
-              <img
-                src={user?.resume?.url}
-                alt="Avatar"
-                className="max-h-50 max-w-50"
-              />
-              <span className="group-hover:inline-block hidden absolute">
-                Resume
-              </span>
-            </Link>
+            <iframe src={user?.resume?.url} height="300px"></iframe>
           </div>
           <div className="flex w-[90%] min-w-[220px] flex-col gap-1">
             <div className="flex gap-2 flex-wrap">
@@ -144,8 +135,8 @@ function Profile() {
             ""
           )}
           <div className="w-[90%] rounded-lg outline-1 p-2 gap-2 flex flex-wrap">
-            {user?.iAm?.map((item) => (
-              <span className="w-fit">{item},</span>
+            {user?.iAm?.map((item,idx) => (
+              <span key={idx} className="w-fit">{item},</span>
             ))}
           </div>
         </div>
